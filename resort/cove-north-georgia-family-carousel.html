@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cove is a concept resort designed for families including members with intellectual or developmental disabilities. A vacation for everyone, including you.">
+<title>Cove Resort | A vacation for everyone. Including you.</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--char:#333138;--lilac:#C6A9C1;--sage:#73956F;--cream:#FFF6EA;--terra:#CA6641;--blue:#79ADDC;--deep:#1f2b25;--sand:#f3e7d6;--fs:100%}
+*{box-sizing:border-box}
+html{font-size:var(--fs);scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--char);font:1rem/1.75 "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.01em}
+h1,h2,h3,.brand,.big{font-family:Lexend,"Helvetica Neue",Arial,sans-serif;font-weight:300;letter-spacing:-.025em;line-height:1.12;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.6rem)}
+p{margin:0 0 1em;max-width:56ch}
+a{color:inherit;text-underline-offset:4px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:12px 18px;border-radius:8px;z-index:60}
+.skip:focus{left:8px}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:13px 32px;border-radius:100px;background:#b5573a;color:#fff;font:400 1rem Lexend,sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:#9c472d}
+.btn.ghost{background:transparent;border:1.5px solid #fff}
+.btn.ghost:hover{background:rgba(255,255,255,.2)}
+/* experience cards */
+.experiences{padding:100px 0;background:var(--cream)}
+.experiences .eyebrow{color:#9a4b32;font:500 .9rem Lexend,sans-serif;text-transform:uppercase;letter-spacing:.13em}
+.experiences h2{max-width:19ch;margin:12px 0 18px}
+.experiences .intro{font-size:1.1rem;color:#55525c;margin-bottom:34px}
+.exp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.exp-card{border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 8px 30px rgba(20,35,25,.06)}
+.exp-card img{width:100%;height:270px;object-fit:cover;display:block}
+.exp-card .copy{padding:25px}
+.exp-card h3{font-size:1.55rem;margin-bottom:10px}
+.exp-card p{font-size:.98rem;color:#55525c}
+.exp-card a{font-weight:600;color:#8f3e2c}
+@media(max-width:800px){.exp-grid{grid-template-columns:1fr}.exp-card img{height:250px}}
+/* nav */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:30;color:#fff;transition:background .3s}
+header.nav.solid{background:rgba(31,43,37,.97)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:84px;max-width:1360px}
+.brand{font-size:2rem;font-weight:400;text-decoration:none}
+.brand i{color:#e58a67;font-style:normal}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:12px 16px;text-decoration:none;border-radius:100px}
+.nav ul a:hover{background:rgba(255,255,255,.18)}
+/* Booking action stays prominent; display controls live in the footer. */
+.nav-book{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border-radius:100px;background:#b5573a;color:#fff;text-decoration:none;font:400 .9rem Lexend,sans-serif;white-space:nowrap}
+.nav-book:hover{background:#9c472d}
+.access-settings{margin-top:26px;max-width:460px;border:1px solid #9da99b;border-radius:14px;padding:15px 18px}
+.access-settings summary{cursor:pointer;font:400 1rem Lexend,sans-serif;min-height:30px}
+.access-settings p{font-size:.92rem;line-height:1.6;margin:12px 0}
+.access-actions{display:flex;gap:10px;flex-wrap:wrap}
+.access-actions button{min-height:44px;min-width:54px;padding:8px 14px;border:1px solid #d9ded6;border-radius:10px;background:#fff6ea;color:#1f2b25;font:400 1rem Lexend,sans-serif;cursor:pointer}
+.access-actions button:hover{background:#e5eadf}
+.mobile-access{display:none!important}
+.nav .r{display:flex;align-items:center;gap:10px}
+#menu-toggle{display:none;min-height:44px;padding:8px 15px;border:1px solid #fff;border-radius:20px;background:transparent;color:white;font:400 1rem Lexend,sans-serif;cursor:pointer}
+@media(max-width:1000px){#menu-toggle{display:block}.nav nav{display:none;position:absolute;top:84px;left:0;right:0;background:#1f2b25;padding:16px 28px 24px}.nav nav.open{display:block}.nav ul{display:flex;flex-direction:column;gap:6px}}
+@media(max-width:1000px){.mobile-access{display:block!important}}
+@media(max-width:560px){.nav .wrap{padding:0 16px}.brand{font-size:1.65rem}.nav-book{padding:9px 12px;font-size:.78rem}}
+
+/* hero */
+.destination-tag{font:500 .78rem/1.5 Lexend,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff3dd;margin:-4px 0 20px;max-width:none}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:#2f4a3e;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(18,26,22,.88) 0%,rgba(18,26,22,.3) 60%,rgba(18,26,22,.55) 100%)}
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;background-size:cover;background-position:center}
+.hero-slide.active{opacity:1;visibility:visible}
+.hero .wrap{z-index:2}
+.hero-controls{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.hero-controls button{min-width:44px;min-height:44px;border:1.5px solid rgba(255,255,255,.8);background:rgba(15,30,22,.35);border-radius:50%;color:#fff;font:500 1.1rem Lexend,sans-serif;cursor:pointer}
+.hero-controls button:hover{background:rgba(15,30,22,.8)}
+.hero-count{font:400 .9rem Lexend,sans-serif;letter-spacing:.08em}
+@media(prefers-reduced-motion:reduce){.hero-slide{transition:none}}
+.hero .wrap{position:relative;width:100%;padding-bottom:36px;padding-top:140px}
+.hero h1{font-size:clamp(3rem,8vw,7rem);font-weight:200;max-width:11ch;margin-bottom:22px}
+.hero .sub{font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:46ch;margin-bottom:34px}
+.book{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;background:var(--cream);color:var(--char);border-radius:22px;padding:14px;margin-top:10px}
+.book label{display:block;padding:8px 14px;border-radius:12px;font-size:.82rem;color:#55525c}
+.book input,.book select{display:block;width:100%;border:0;background:transparent;font:400 1.1rem Lexend,sans-serif;color:var(--char);padding:2px 0;margin-top:2px}
+.book .btn{border-radius:14px;justify-content:center}
+@media(max-width:860px){.book{grid-template-columns:1fr 1fr}.book .btn{grid-column:1/-1}}
+/* opening */
+.open{padding:clamp(80px,12vw,160px) 0;text-align:center}
+.open .big{font-size:clamp(2.2rem,5.6vw,4.8rem);max-width:17ch;margin:0 auto 34px}
+.open p{margin:0 auto 1em;font-size:1.15rem;color:#55525c}
+.open .big em{font-style:normal;color:var(--terra)}
+/* quote band */
+.said{background:var(--lilac);padding:clamp(70px,10vw,130px) 0}
+.said blockquote{margin:0;font:200 clamp(1.9rem,4.6vw,3.8rem)/1.2 Lexend,sans-serif;letter-spacing:-.025em;max-width:22ch}
+.said p{margin:26px 0 0;font-size:1rem;color:#3c3640}
+/* story panels */
+.panel{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center;background-color:#3d5247}
+.panel::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,26,22,.86),rgba(18,26,22,.1) 65%)}
+.panel .wrap{position:relative;width:100%;padding-top:80px;padding-bottom:clamp(48px,8vw,100px)}
+.panel .tag{display:inline-block;background:rgba(255,246,234,.18);border:1px solid rgba(255,246,234,.5);border-radius:100px;padding:5px 16px;font:400 .95rem Lexend,sans-serif;margin-bottom:18px}
+.panel h2{font-size:clamp(2.2rem,6vw,5rem);font-weight:200;max-width:15ch;margin-bottom:18px}
+.panel p{font-size:1.15rem;max-width:44ch;margin:0}
+.p1{background-image:url("https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2400&q=80")}
+.p2{background-image:url("https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2400&q=80")}
+.p3{background-image:url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=80")}
+.p4{background-image:url("https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=2400&q=80")}
+.p5{background-image:url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=80")}
+/* apart */
+.apart{background:var(--deep);color:var(--cream);padding:clamp(80px,11vw,140px) 0}
+.apart h2{margin-bottom:16px;max-width:16ch}
+.apart .lead{color:#d9cfbd;font-size:1.15rem}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}
+.tabs button{min-height:52px;font:400 1rem Lexend,sans-serif;padding:12px 26px;border-radius:100px;border:1.5px solid var(--cream);background:transparent;color:var(--cream);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--cream);color:var(--deep)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pane{border-radius:24px;padding:36px;min-height:210px;background:var(--sage);color:#fff}
+.pane.y{background:var(--lilac);color:var(--char)}
+.pane h3{font-size:1.5rem;margin-bottom:12px}
+.pane p{margin:0;font-size:1.1rem}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+/* trust */
+.trust{padding:clamp(80px,11vw,140px) 0}
+.trust .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.trust img{display:block;width:100%;height:560px;object-fit:cover;border-radius:28px;background:#3d5247}
+.trust h2{margin-bottom:18px}
+.trust ul{list-style:none;margin:26px 0 0;padding:0}
+.trust li{padding:18px 0;border-top:1px solid rgba(51,49,56,.2)}
+.trust li b{display:block;font:400 1.15rem Lexend,sans-serif}
+.note{font-size:.9rem;color:#55525c}
+@media(max-width:860px){.trust .wrap{grid-template-columns:1fr;gap:34px}.trust img{height:340px}}
+/* plan */
+.plan{background:var(--sand);padding:clamp(70px,10vw,120px) 0}
+.plan ol{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.plan li{background:var(--cream);border-radius:22px;padding:26px}
+.plan li span{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--terra);color:#fff;font:400 1rem Lexend,sans-serif;margin-bottom:16px;background:#b5573a}
+.plan li b{display:block;font:400 1.15rem Lexend,sans-serif;margin-bottom:6px}
+@media(max-width:900px){.plan ol{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.plan ol{grid-template-columns:1fr}}
+/* end */
+.end{position:relative;min-height:80vh;display:flex;align-items:center;color:#fff;background:#3d5247 url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2400&q=80") center/cover}
+.end::before{content:"";position:absolute;inset:0;background:rgba(18,26,22,.62)}
+.end .wrap{position:relative}
+.end h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:200;max-width:14ch;margin-bottom:20px}
+.end small{display:block;margin-top:22px;opacity:.9}
+footer{background:var(--deep);color:#eee7d9;padding:56px 0 30px}
+footer .g{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer a{display:block;padding:6px 0;text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .brand{font-size:1.7rem}
+footer small{display:block;margin-top:28px;color:#bdb5a6}
+@media(max-width:700px){footer .g{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header.nav{transition:none}}
+
+/* Optional visitor display preferences */
+.access-settings{max-width:680px}
+.access-settings fieldset{border:0;padding:0;margin:18px 0 0}
+.access-settings legend{font:400 1rem Lexend,sans-serif;margin-bottom:10px}
+.access-settings .setting-note{font-size:.85rem;opacity:.9}
+.access-settings .setting-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.access-settings label.setting{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #9da99b;border-radius:12px;cursor:pointer;min-height:52px}
+.access-settings input[type=checkbox]{width:20px;height:20px;accent-color:#b5573a;flex-shrink:0}
+.access-settings .access-actions{margin-top:12px}
+@media(max-width:540px){.access-settings .setting-grid{grid-template-columns:1fr}}
+html.pref-spacing body{letter-spacing:.045em;word-spacing:.12em;line-height:2}
+html.pref-spacing p,html.pref-spacing li{line-height:2}
+html.pref-readable body,html.pref-readable h1,html.pref-readable h2,html.pref-readable h3,html.pref-readable .brand,html.pref-readable .big{font-family:Arial,Helvetica,sans-serif!important}
+html.pref-readable h1,html.pref-readable h2,html.pref-readable h3{letter-spacing:normal;font-weight:500}
+html.pref-links a:not(.btn):not(.nav-book){text-decoration:underline!important;text-decoration-thickness:2px;text-underline-offset:4px}
+html.pref-motion,html.pref-motion *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+html.pref-contrast{--char:#101010;--cream:#fff;--sand:#fff;--deep:#090909;--sage:#20572a;--lilac:#fff}
+html.pref-contrast body{background:#fff;color:#101010}
+html.pref-contrast .open p,html.pref-contrast .experiences .intro,html.pref-contrast .exp-card p,html.pref-contrast .note{color:#111}
+html.pref-contrast .exp-card,html.pref-contrast .plan li{border:2px solid #111}
+html.pref-contrast .access-settings{border-color:#fff}
+html.pref-contrast :focus-visible{outline:4px solid #ffcf33;outline-offset:4px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="#top" aria-label="Cove, home">cove<i>.</i></a>
+  <nav id="main-nav" aria-label="Main"><ul>
+    <li><a href="#for-you">For you</a></li>
+    <li><a href="#for-family">For your family</a></li>
+    <li><a href="#care">The Way We Care</a></li>
+    <li><a href="#plan">Plan Your Stay</a></li>
+    <li class="mobile-access"><a href="#accessibility-settings">Accessibility settings</a></li>
+  </ul></nav>
+  <div class="r"><a class="nav-book" href="#plan">Book Your Stay</a><button id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu</button></div>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+  <!-- Concept image placeholders: replace with licensed, consented photos authentically representing families with children and adult family members with disabilities. Do not imply pictured people have disabilities. -->
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2400&q=85')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=2400&q=85')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=2400&q=85')"></div>
+  </div>
+  <div class="wrap">
+  <div class="hero-controls" role="group" aria-label="Hero photograph carousel">
+    <button type="button" id="hero-prev" aria-label="Previous photograph">&#8592;</button>
+    <button type="button" id="hero-next" aria-label="Next photograph">&#8594;</button>
+  </div>
+  <h1 id="h1">A vacation for everyone. Including you.</h1>
+  <p class="destination-tag">NORTH GEORGIA MOUNTAINS</p>
+  <p class="sub">Tucked into the North Georgia mountains, a new kind of family getaway: mountain air, memorable adventures, and thoughtful support that makes room for everyone to enjoy their vacation.</p>
+  <form class="book" onsubmit="event.preventDefault();location.hash='plan'" aria-label="Explore your stay">
+    <label>Arrive<input type="date" aria-label="Arrival date"></label>
+    <label>Depart<input type="date" aria-label="Departure date"></label>
+    <label>Who's coming<select aria-label="Who is coming"><option>2 adults, 1 child</option><option>2 adults, 2 children</option><option>1 adult, 1 child</option><option>2 adults, 3 children</option><option>Adults traveling together</option><option>Other family group</option></select></label>
+    <button class="btn" type="submit">Explore your stay</button>
+  </form>
+</div></section>
+
+<section class="open" aria-labelledby="o-title"><div class="wrap">
+  <h2 class="big" id="o-title">Mountain days where <em>everyone belongs.</em></h2>
+  <p>Imagine slow mornings with mountain views, fresh-air adventures, and evenings around the fire. A getaway shaped around your family, with room for every guest to enjoy it their way.</p>
+</div></section>
+
+<section class="experiences" id="experiences" aria-labelledby="exp-title"><div class="wrap">
+  <span class="eyebrow">Discover Cove</span>
+  <h2 id="exp-title">A little something for everyone.</h2>
+  <p class="intro">From peaceful mountain mornings to shared discoveries outdoors, everyone can find something to look forward to.</p>
+  <div class="exp-grid">
+    <article class="exp-card" id="for-you"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80" alt="Relaxing spa experience" loading="lazy"><div class="copy"><h3>For You</h3><p>Coffee overlooking the ridgeline, a spa afternoon, elevated dining, or the freedom to do absolutely nothing.</p><a href="#your-way">Make time for you</a></div></article>
+    <article class="exp-card" id="for-family"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80" alt="Mountain lake and wooded ridgeline, illustrating the proposed destination" loading="lazy"><div class="copy"><h3>For Your Family</h3><p>Nature discovery, creative activities, and mountain experiences designed around each guest’s interests and access needs.</p><a href="#care">See how we support guests</a></div></article>
+    <article class="exp-card"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Sunlight filtering through a forest, representing shared mountain experiences" loading="lazy"><div class="copy"><h3>Better Together</h3><p>Fireside evenings, accessible scenic outings, and unhurried meals with the people you love.</p><a href="#belong">Find your people</a></div></article>
+  </div>
+</div></section>
+
+<section class="panel p5" id="belong" aria-labelledby="s5"><div class="wrap">
+  <span class="tag">Belong</span><h2 id="s5">Come as you are.</h2>
+  <p>There's no need to explain your family's way of doing things. Find space to connect with others, or enjoy the day in your own way.</p>
+</div></section>
+
+<section class="apart" id="your-way" aria-labelledby="a-title"><div class="wrap">
+  <h2 id="a-title">Your vacation, your way.</h2>
+  <p class="lead">Choose time together, independent experiences, or a little of both. Your preferences lead the way.</p>
+  <div class="tabs" role="group" aria-label="How much time apart">
+    <button type="button" aria-pressed="true" data-k="0">A shared morning</button>
+    <button type="button" aria-pressed="false" data-k="1">Different adventures</button>
+    <button type="button" aria-pressed="false" data-k="2">A flexible day</button>
+  </div>
+  <div class="split" aria-live="polite">
+    <div class="pane y"><h3>You</h3><p id="you"></p></div>
+    <div class="pane"><h3>Your family member</h3><p id="kid"></p></div>
+  </div>
+</div></section>
+
+<section class="trust" id="care" aria-labelledby="c-title"><div class="wrap">
+  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" alt="A welcoming, calm resort interior" loading="lazy">
+  <div>
+    <h2 id="c-title">The Way We Care</h2>
+    <p>Feeling confident begins with clear information, meaningful choices, and support tailored to the individual. Here is what we propose to build into the experience.</p>
+    <ul>
+      <li><b>Built for this from day one</b>Proposed step-free routes between suites and amenities, quiet spaces, and accessible ways to experience the mountain setting.</li>
+      <li><b>Training and credentials</b>Proposed staff preparation and third-party certification, subject to operational verification.</li>
+      <li><b>Care you can see</b>Proposed on-site clinical support and staff with relevant experience, subject to feasibility review.</li>
+      <li><b>Clear before you book</b>Room details, photos, and measurements on every page.</li>
+    </ul>
+    <p class="note" style="margin-top:14px">Concept note: certifications, staffing, and features are proposed.</p>
+  </div>
+</div></section>
+
+<section class="plan" id="plan" aria-labelledby="p-title"><div class="wrap">
+  <h2 id="p-title">Your mountain getaway, made easier.</h2>
+  <ol>
+    <li><span>1</span><b>Tell us about your family</b>Share each guest’s interests, routines, and preferred supports.</li>
+    <li><span>2</span><b>Pick your suite</b>Photos, floor plans, and measurements, so you know before you book.</li>
+    <li><span>3</span><b>Preview the visit</b>An optional visual guide to the property, routes, and activities to explore before arrival.</li>
+    <li><span>4</span><b>Choose your experiences</b>Plan shared activities, individual interests, and time to unwind.</li>
+  </ol>
+</div></section>
+
+<section class="end" aria-labelledby="e-title"><div class="wrap">
+  <h2 id="e-title">A mountain getaway worth coming back to.</h2>
+  <p style="font-size:1.2rem">Discover the mountains together, with space for everyone to enjoy the journey.</p>
+  <a class="btn" href="mailto:hello@example.com?subject=Cove%20Resort%20Concept%20Inquiry">Start planning</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="g">
+    <div><a class="brand" href="#top">cove<i>.</i></a><p>Mountain hospitality, with a place for everyone.</p></div>
+    <div><a href="#for-you">For you</a><a href="#for-family">For your family</a><a href="#care">The Way We Care</a><a href="#plan">Plan Your Stay</a></div>
+    <div><a href="#care">Accessibility information</a><a href="#plan">Contact us</a><a href="#plan">Pre-arrival planning</a></div>
+  </div>
+  <details class="access-settings" id="accessibility-settings">
+    <summary>Accessibility settings</summary>
+    <p>Choose how you’d like to view this website. These settings are optional and do not change your browser preferences.</p>
+    <fieldset><legend>Text size</legend>
+      <div class="access-actions" aria-label="Text size controls">
+        <button type="button" id="dn" aria-label="Decrease text size">A−</button>
+        <button type="button" id="up" aria-label="Increase text size">A+</button>
+      </div>
+    </fieldset>
+    <fieldset><legend>Display and reading</legend>
+      <div class="setting-grid">
+        <label class="setting"><input type="checkbox" id="pref-contrast"> Higher contrast</label>
+        <label class="setting"><input type="checkbox" id="pref-spacing"> More text spacing</label>
+        <label class="setting"><input type="checkbox" id="pref-readable"> Simpler font</label>
+        <label class="setting"><input type="checkbox" id="pref-links"> Underline links</label>
+        <label class="setting"><input type="checkbox" id="pref-motion"> Reduce motion</label>
+      </div>
+    </fieldset>
+    <div class="access-actions"><button type="button" id="reset-size">Reset all settings</button></div>
+    <p class="setting-note">You can also use browser zoom, keyboard navigation, and your device’s accessibility tools. These controls are not a substitute for an accessible website.</p>
+  </details>
+  <small>© <span id="y"></span> Cove. Conceptual resort created for an academic project.</small>
+</div></footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+// Manual carousel: no autoplay, so visitors control motion and reading time.
+var heroSlides=Array.from(document.querySelectorAll('.hero-slide')),heroIndex=0;
+function heroShow(i){heroIndex=(i+heroSlides.length)%heroSlides.length;heroSlides.forEach(function(el,n){el.classList.toggle('active',n===heroIndex)});document.getElementById('hero-count').textContent=String(heroIndex+1).padStart(2,'0')+' / '+String(heroSlides.length).padStart(2,'0')}
+document.getElementById('hero-prev').addEventListener('click',function(){heroShow(heroIndex-1)});
+document.getElementById('hero-next').addEventListener('click',function(){heroShow(heroIndex+1)});
+var n=document.getElementById('nav');function sc(){n.classList.toggle('solid',scrollY>60)}sc();addEventListener('scroll',sc,{passive:true});
+var T=[["Enjoy a slow breakfast or a walk together.","Choose a shared experience or a supported activity that fits their interests."],
+["Explore the spa, a class, or a quiet place to recharge.","Enjoy an age-appropriate experience, with individualized support as needed."],
+["Plan a full day around your own interests, with time to reconnect later.","Choose from a range of activities and moments together, based on each guest's preferences."]];
+var b=document.querySelectorAll('.tabs button');
+function show(i){document.getElementById('you').textContent=T[i][0];document.getElementById('kid').textContent=T[i][1];b.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.k==i)})}
+b.forEach(function(x){x.addEventListener('click',function(){show(+x.dataset.k)})});show(0);
+var s=100;function sz(d){s=Math.max(90,Math.min(150,s+d));document.documentElement.style.setProperty('--fs',s+'%')}
+var toggle=document.getElementById('menu-toggle'),mainNav=document.getElementById('main-nav');
+toggle.addEventListener('click',function(){var open=mainNav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'Close':'Menu'});
+mainNav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mainNav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='Menu';if(a.getAttribute('href')==='#accessibility-settings'){document.getElementById('accessibility-settings').open=true}})});
+var prefs=['contrast','spacing','readable','links','motion'];
+function savePrefs(){try{localStorage.setItem('cove-accessibility',JSON.stringify({size:s,options:Object.fromEntries(prefs.map(function(k){return [k,document.getElementById('pref-'+k).checked]}))}))}catch(e){}}
+function setPref(k,on){document.documentElement.classList.toggle('pref-'+k,on);document.getElementById('pref-'+k).checked=on}
+try{var saved=JSON.parse(localStorage.getItem('cove-accessibility')||'{}');if(saved.size>=90&&saved.size<=150){s=saved.size;document.documentElement.style.setProperty('--fs',s+'%')}prefs.forEach(function(k){if(saved.options&&saved.options[k])setPref(k,true)})}catch(e){}
+prefs.forEach(function(k){document.getElementById('pref-'+k).addEventListener('change',function(e){setPref(k,e.target.checked);savePrefs()})});
+document.getElementById('up').onclick=function(){sz(10);savePrefs()};
+document.getElementById('dn').onclick=function(){sz(-10);savePrefs()};
+document.getElementById('reset-size').onclick=function(){s=100;document.documentElement.style.setProperty('--fs','100%');prefs.forEach(function(k){setPref(k,false)});savePrefs()};
+</script>
+</body>
+</html>
